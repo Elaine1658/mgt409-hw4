@@ -1,3 +1,6 @@
 # App check images
 
-The screenshots requested in Problem 11 are not included because the available browser workflow did not allow screenshot files to be saved into the project. The related live-app checks and this evidence gap are recorded in `../app_check.html`.
+- `dynamic-search-cards.png` shows the guest chat returning eight matching jacket cards with prices and stock counts.
+- The exact-item inventory check and the P9 usability-feature screenshot are still needed.
+
+Add each remaining screenshot here and link it from `../app_check.html` with a relative path.
