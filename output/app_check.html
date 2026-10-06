@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Customs App Check</title>
+  <style>
+    :root { color-scheme: light; --blue: #153a67; --ink: #26313e; --cream: #fbf8f1; --line: #d9dfe5; }
+    body { margin: 0; background: var(--cream); color: var(--ink); font: 16px/1.6 system-ui, sans-serif; }
+    main { width: min(900px, calc(100% - 32px)); margin: 42px auto; }
+    h1, h2 { color: var(--blue); line-height: 1.2; }
+    h1 { font-family: Georgia, serif; font-size: clamp(2rem, 5vw, 3rem); }
+    article { margin: 22px 0; padding: 22px; border: 1px solid var(--line); border-radius: 14px; background: white; }
+    .status { display: inline-block; margin: 0; padding: 3px 10px; border-radius: 999px; background: #e8f3ed; color: #17623c; font-weight: 700; font-size: .85rem; }
+    .missing { padding: 12px 14px; border-left: 4px solid #bb7b19; background: #fff7e6; }
+    code { padding: 2px 5px; border-radius: 4px; background: #edf1f5; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">HOMEWORK 4 · LOCAL SITE CHECK</p>
+    <h1>Campus Customs app check</h1>
+    <p>These checks were completed in the running local app with the supplied course database.</p>
+
+    <article>
+      <p class="status">Behavior checked</p>
+      <h2>1. Inventory answer from the database</h2>
+      <p>The local chat check used the Champion Reverse Weave Hoodie in size XS. The assistant reported that XS is out of stock and gave the listed price of $68. The database records quantity 0 for XS.</p>
+      <p class="missing"><strong>Screenshot missing:</strong> an image was not saved for this check. This page records the observed result but does not claim to include screenshot evidence.</p>
+    </article>
+
+    <article>
+      <p class="status">Behavior checked</p>
+      <h2>2. Chat search cards</h2>
+      <p>The local chat check used the question “What hoodies do you have?” The assistant returned matching product cards. Selecting a card opened the same product detail page used by the Products catalogue.</p>
+      <p class="missing"><strong>Screenshot missing:</strong> an image was not saved for this check. This page records the observed result but does not claim to include screenshot evidence.</p>
+    </article>
+
+    <article>
+      <p class="status">Behavior checked</p>
+      <h2>3. Product filters and price sorting</h2>
+      <p>Searching for “Champion” returned one matching item. The Hoodies filter reduced the catalogue to 25 items. Setting “Price: low to high” moved the $45 Yale Sports Hoodie Tennis to the top of the filtered results. These controls make a large catalogue easier to browse.</p>
+      <p class="missing"><strong>Screenshot missing:</strong> an image was not saved for this check. This page records the observed result but does not claim to include screenshot evidence.</p>
+    </article>
+
+    <p><strong>Evidence limit:</strong> the required image files are not present in <code>app_check_images/</code>, so the screenshot part of Problem 11 is incomplete.</p>
+  </main>
+</body>
+</html>
