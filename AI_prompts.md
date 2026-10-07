@@ -1,6 +1,6 @@
 # AI Prompts
 
-> Original student requests (verbatim, Chinese): “这是我的AI HOMEWORK作业，请帮我做一下，要求如下：1. 忽略粉红色字体；2.你是国际学生，需要注意语言表达；3. 不需要用我的portkey_api_key，你可以直接做就行”, “你直接做，不要让我用我的话”, and “你要完成所有problem（包括p1\p2\p3\..p13)”. The short English prompts below are AI-written work prompts based on these requests and the non-pink assignment requirements. They are not separate, verbatim messages typed by the student.
+> Assignment overview prompt (AI-drafted from the course scenario): “Act as my project assistant for MGT 409 Homework 4. Help me build Campus Customs, a custom-apparel store with a React, Vite, and TypeScript front end and a Python FastAPI backend using a PydanticAI agent. Shoppers should be able to browse products, create accounts, chat, see matching product cards, and get accurate prices and size-level stock from the supplied local SQLite database. Use the supplied catalogue image paths and research yalebulldogblue.com for the site's style and information for the agent prompt. Work on one problem at a time, using the problem description I provide in my own words. Explain each step in clear English suitable for an international student, and help me review each result. Do not use my Portkey API key or commit the course database or product images. When the project is ready, help me publish the code to a public GitHub repository and give me its URL so I can submit it on Canvas.” This is an AI-drafted project overview, not a verbatim prompt written by the student.
 
 ## Problem 1 — Vibe coder prompts
 
