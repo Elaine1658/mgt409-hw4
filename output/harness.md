@@ -70,13 +70,13 @@ The course data pack starts with three application tables: `catalogue`, `invento
 | `get_product_info` | `product_id` | Returns the canonical description, price, colors, image, and inventory for one item. |
 | `get_stock` | `product_id`, optional `size` | Returns database stock by size and the product price for exact availability questions. |
 
-The local assistant is the default and works without any model credential. It calls the same SQLite lookup functions, answers price and stock questions only from database values, and asks a follow-up when it cannot identify one item confidently. PydanticAI with a direct OpenAI key can be enabled explicitly with `USE_REMOTE_MODEL=true`; the remote model defaults to `openai:gpt-5-mini` and can be changed with `OPENAI_MODEL`. The application does not read `PORTKEY_API_KEY`. In remote mode, each run allows at most 5 model requests and 8 total tool calls.
+The local assistant works without any model credential. It calls the same SQLite lookup functions, answers price and stock questions only from database values, and asks a follow-up when it cannot identify one item confidently. Adding `PORTKEY_API_KEY` enables the PydanticAI agent through Portkey. Its default model is `gpt-4o-mini-2024-07-18`, configurable with `PORTKEY_MODEL`; `PORTKEY_BASE_URL` can point to another compatible gateway. The default is a concrete model route accepted by the course gateway; a different route can be supplied when the gateway configuration requires it. Alternatively, set `USE_REMOTE_MODEL=true` with `OPENAI_API_KEY` to call OpenAI directly; the model defaults to `gpt-5-mini` and can be changed with `OPENAI_MODEL`. If optional model setup fails, the local assistant stays available. In remote mode, each run allows at most 5 model requests and 8 total tool calls.
 
 ## Auth, memory, and safety
 
 - New passwords use a salted PBKDF2-SHA256 hash with 600,000 rounds. The provided test account uses the course fixture's three-part PBKDF2-SHA256 format with a fixture-defined salt and 120,000 rounds; the verifier supports both formats.
 - The app returns only public account fields. Password hashes, API keys, session tokens, and full chat messages are not written to the audit trail.
-- A shopper's name, email, and current product page may be used as context for the current chat request. In remote mode, these fields are sent to the configured model provider. Guest chats remain temporary; logged-in messages use that shopper's `user_id`.
+- A shopper's name, email, and current product page may be used as context for the current chat request. In remote mode, these fields are sent to the configured provider (Portkey or OpenAI). Guest chats remain temporary; logged-in messages use that shopper's `user_id`.
 - `output/audit_trail.json` is a logical append-only list. Each entry records an ISO timestamp, tool name, short arguments, a result summary, and a stop reason. It omits passwords, API keys, session tokens, and full customer messages.
 - The agent must use database tools for product facts, report a zero quantity explicitly, and clarify an uncertain match instead of guessing.
 - The assistant cannot place orders, reserve stock, modify inventory, or request a password or payment details in chat.
@@ -87,8 +87,8 @@ The local assistant is the default and works without any model credential. It ca
 - Message length: at most 1,500 characters.
 - Product results: at most 8 in chat, 120 in a catalogue request.
 - Saved history: latest 40 messages returned; a request can read at most 80.
-- Search operations use the local SQLite database; no vector database or external service is required. The optional model mode uses the configured direct OpenAI provider.
+- Search operations use the local SQLite database; no vector database or external search service is required. The optional model mode uses the configured Portkey gateway or direct OpenAI provider.
 - Front end: from `frontend/`, run `npm install` and `npm run dev` (port 5173).
 - Back end: from `backend/`, run `uvicorn main:app --reload --port 8000`.
-- Before a public deployment, set a unique `APP_SECRET`. The example value is for local development only.
+- Before a public deployment, set a unique `APP_SECRET`. The example value is for local development only. Keep provider API keys in local environment variables; never commit `.env`.
 - Test account credentials are omitted from this public repository. Use the credentials provided with the course fixture locally.

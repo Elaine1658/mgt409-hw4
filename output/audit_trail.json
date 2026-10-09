@@ -104,5 +104,259 @@
     },
     "result": "Returned 6 catalogue matches",
     "stop_reason": "local_search_complete"
+  },
+  {
+    "time": "2026-10-06T03:17:11.883504+00:00",
+    "tool_name": "get_product_info",
+    "arguments": {
+      "product_id": "berkeley-sweater-fleece-jacket"
+    },
+    "result": "Current product context loaded",
+    "stop_reason": "tool_complete"
+  },
+  {
+    "time": "2026-10-06T03:17:11.895042+00:00",
+    "tool_name": "get_product_info",
+    "arguments": {
+      "product_id": "berkeley-sweater-fleece-jacket"
+    },
+    "result": "Product details loaded",
+    "stop_reason": "local_product_reply"
+  },
+  {
+    "time": "2026-10-06T03:23:05.244487+00:00",
+    "tool_name": "search_catalogue",
+    "arguments": {
+      "query_terms": 11,
+      "limit": 8
+    },
+    "result": "Returned 8 catalogue matches",
+    "stop_reason": "local_search_complete"
+  },
+  {
+    "time": "2026-10-06T03:25:40.294356+00:00",
+    "tool_name": "answer_from_catalogue",
+    "arguments": {
+      "product_id": "champion-reverse-weave-hoodie-1",
+      "size": "XS"
+    },
+    "result": "Price and stock facts read from the course database",
+    "stop_reason": "local_fact_reply"
+  },
+  {
+    "time": "2026-10-09T21:53:44.464207+00:00",
+    "tool_name": "assistant_reply",
+    "arguments": {
+      "mode": "fallback"
+    },
+    "result": "Remote model unavailable; used local catalogue logic",
+    "stop_reason": "model_error_fallback"
+  },
+  {
+    "time": "2026-10-09T21:53:44.473843+00:00",
+    "tool_name": "answer_from_catalogue",
+    "arguments": {
+      "product_id": "basic-hoodie-big-yale",
+      "size": ""
+    },
+    "result": "Price and stock facts read from the course database",
+    "stop_reason": "local_fact_reply"
+  },
+  {
+    "time": "2026-10-09T21:53:44.697691+00:00",
+    "tool_name": "assistant_reply",
+    "arguments": {
+      "mode": "fallback"
+    },
+    "result": "Remote model unavailable; used local catalogue logic",
+    "stop_reason": "model_error_fallback"
+  },
+  {
+    "time": "2026-10-09T21:53:44.707624+00:00",
+    "tool_name": "search_catalogue",
+    "arguments": {
+      "query_terms": 9,
+      "limit": 8
+    },
+    "result": "Returned 8 catalogue matches",
+    "stop_reason": "local_search_complete"
+  },
+  {
+    "time": "2026-10-09T21:53:44.851232+00:00",
+    "tool_name": "assistant_reply",
+    "arguments": {
+      "mode": "fallback"
+    },
+    "result": "Remote model unavailable; used local catalogue logic",
+    "stop_reason": "model_error_fallback"
+  },
+  {
+    "time": "2026-10-09T21:53:44.857382+00:00",
+    "tool_name": "answer_from_catalogue",
+    "arguments": {
+      "product_id": "baseball-left-chest-crewneck",
+      "size": "XL"
+    },
+    "result": "Price and stock facts read from the course database",
+    "stop_reason": "local_fact_reply"
+  },
+  {
+    "time": "2026-10-09T21:53:45.004249+00:00",
+    "tool_name": "assistant_reply",
+    "arguments": {
+      "mode": "fallback"
+    },
+    "result": "Remote model unavailable; used local catalogue logic",
+    "stop_reason": "model_error_fallback"
+  },
+  {
+    "time": "2026-10-09T21:53:45.010322+00:00",
+    "tool_name": "search_catalogue",
+    "arguments": {
+      "query_terms": 5,
+      "limit": 8
+    },
+    "result": "Returned 8 catalogue matches",
+    "stop_reason": "local_search_complete"
+  },
+  {
+    "time": "2026-10-09T21:56:40.730671+00:00",
+    "tool_name": "get_product_info",
+    "arguments": {
+      "product_id": "basic-hoodie-big-yale"
+    },
+    "result": "Current product context loaded",
+    "stop_reason": "tool_complete"
+  },
+  {
+    "time": "2026-10-09T21:56:40.732697+00:00",
+    "tool_name": "answer_from_catalogue",
+    "arguments": {
+      "product_id": "basic-hoodie-big-yale",
+      "size": "XL"
+    },
+    "result": "Price and stock facts read from the course database",
+    "stop_reason": "local_fact_reply"
+  },
+  {
+    "time": "2026-10-09T22:07:30.477542+00:00",
+    "tool_name": "get_product_info",
+    "arguments": {
+      "product_id": "baseball-left-chest-crewneck"
+    },
+    "result": "Current product context loaded",
+    "stop_reason": "tool_complete"
+  },
+  {
+    "time": "2026-10-09T22:07:30.483313+00:00",
+    "tool_name": "get_product_info",
+    "arguments": {
+      "product_id": "baseball-left-chest-crewneck"
+    },
+    "result": "Product details loaded",
+    "stop_reason": "local_product_reply"
+  },
+  {
+    "time": "2026-10-09T22:33:09.647592+00:00",
+    "tool_name": "get_stock",
+    "arguments": {
+      "product_id": "basic-hoodie-big-yale",
+      "size": "XL"
+    },
+    "result": "Inventory lookup completed",
+    "stop_reason": "tool_complete"
+  },
+  {
+    "time": "2026-10-09T22:33:09.648184+00:00",
+    "tool_name": "get_product_info",
+    "arguments": {
+      "product_id": "basic-hoodie-big-yale"
+    },
+    "result": "Product found",
+    "stop_reason": "tool_complete"
+  },
+  {
+    "time": "2026-10-09T22:33:11.188914+00:00",
+    "tool_name": "assistant_reply",
+    "arguments": {
+      "product_context": "basic-hoodie-big-yale"
+    },
+    "result": "Generated a structured reply with 1 verified product cards",
+    "stop_reason": "agent_completed"
+  },
+  {
+    "time": "2026-10-09T22:33:56.104808+00:00",
+    "tool_name": "get_product_info",
+    "arguments": {
+      "product_id": "basic-hoodie-big-yale"
+    },
+    "result": "Product found",
+    "stop_reason": "tool_complete"
+  },
+  {
+    "time": "2026-10-09T22:33:57.870070+00:00",
+    "tool_name": "assistant_reply",
+    "arguments": {
+      "product_context": "basic-hoodie-big-yale"
+    },
+    "result": "Generated a structured reply with 1 verified product cards",
+    "stop_reason": "agent_completed"
+  },
+  {
+    "time": "2026-10-09T22:33:59.461929+00:00",
+    "tool_name": "get_stock",
+    "arguments": {
+      "product_id": "basic-hoodie-big-yale",
+      "size": "XL"
+    },
+    "result": "Inventory lookup completed",
+    "stop_reason": "tool_complete"
+  },
+  {
+    "time": "2026-10-09T22:34:01.248846+00:00",
+    "tool_name": "assistant_reply",
+    "arguments": {
+      "product_context": "basic-hoodie-big-yale"
+    },
+    "result": "Generated a structured reply with 1 verified product cards",
+    "stop_reason": "agent_completed"
+  },
+  {
+    "time": "2026-10-09T22:34:02.718929+00:00",
+    "tool_name": "search_catalogue",
+    "arguments": {
+      "query_length": 22,
+      "limit": 8
+    },
+    "result": "Returned 8 catalogue matches",
+    "stop_reason": "tool_complete"
+  },
+  {
+    "time": "2026-10-09T22:34:04.937970+00:00",
+    "tool_name": "assistant_reply",
+    "arguments": {
+      "product_context": "yale-sports-hoodie-baseball"
+    },
+    "result": "Generated a structured reply with 7 verified product cards",
+    "stop_reason": "agent_completed"
+  },
+  {
+    "time": "2026-10-09T22:34:27.364200+00:00",
+    "tool_name": "get_stock",
+    "arguments": {
+      "product_id": "baseball-left-chest-crewneck",
+      "size": "XL"
+    },
+    "result": "Inventory lookup completed",
+    "stop_reason": "tool_complete"
+  },
+  {
+    "time": "2026-10-09T22:34:29.304076+00:00",
+    "tool_name": "assistant_reply",
+    "arguments": {
+      "product_context": "baseball-left-chest-crewneck"
+    },
+    "result": "Generated a structured reply with 0 verified product cards",
+    "stop_reason": "agent_completed"
   }
 ]
