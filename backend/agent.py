@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import os
 import re
 from pathlib import Path
@@ -11,10 +12,14 @@ from tools import get_product, record_audit, search_products
 
 PROMPT_PATH = Path(__file__).resolve().parent / "prompts" / "prompt.md"
 PROMPT_TEXT = PROMPT_PATH.read_text(encoding="utf-8") if PROMPT_PATH.exists() else ""
-REMOTE_MODEL_ENABLED = (
+logger = logging.getLogger("campus-customs.agent")
+PORTKEY_API_KEY = os.getenv("PORTKEY_API_KEY", "").strip()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
+REMOTE_MODEL_CONFIGURED = bool(PORTKEY_API_KEY) or (
     os.getenv("USE_REMOTE_MODEL", "false").strip().lower() == "true"
-    and bool(os.getenv("OPENAI_API_KEY"))
+    and bool(OPENAI_API_KEY)
 )
+REMOTE_MODEL_ENABLED = False
 ASSISTANT: Any = None
 
 
@@ -30,19 +35,50 @@ class ShopDeps:
         self.user_email = user_email
 
 
-if REMOTE_MODEL_ENABLED:
+if REMOTE_MODEL_CONFIGURED:
     try:
+        from openai import AsyncOpenAI
         from pydantic_ai import Agent, RunContext, UsageLimits
+        from pydantic_ai.providers.openai import OpenAIProvider
+
+        # PydanticAI renamed this class between major releases. The project pins
+        # version 1.x, while this alias also keeps the current local environment usable.
+        try:
+            from pydantic_ai.models.openai import OpenAIChatModel
+        except ImportError:
+            from pydantic_ai.models.openai import OpenAIModel as OpenAIChatModel
 
         MAX_AGENT_REQUESTS = 5
         MAX_AGENT_TOOL_CALLS = 8
 
+        if PORTKEY_API_KEY:
+            # The course Portkey key routes directly to its configured Azure
+            # OpenAI provider, so use a concrete model ID by default. A
+            # Portkey Model Catalog alias can still be supplied in .env.
+            model_name = os.getenv("PORTKEY_MODEL", "").strip() or "gpt-4o-mini-2024-07-18"
+            client = AsyncOpenAI(
+                api_key=PORTKEY_API_KEY,
+                base_url=os.getenv("PORTKEY_BASE_URL", "").strip()
+                or "https://api.portkey.ai/v1",
+            )
+        else:
+            model_name = os.getenv("OPENAI_MODEL", "").strip() or "gpt-5-mini"
+            if model_name.startswith("openai:"):
+                model_name = model_name.removeprefix("openai:")
+            client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+
+        model = OpenAIChatModel(
+            model_name,
+            provider=OpenAIProvider(openai_client=client),
+        )
+
         ASSISTANT = Agent(
-            os.getenv("OPENAI_MODEL", "openai:gpt-5-mini"),
+            model,
             deps_type=ShopDeps,
             output_type=AgentReply,
             instructions=PROMPT_TEXT,
         )
+        REMOTE_MODEL_ENABLED = True
 
         @ASSISTANT.tool
         def search_catalogue(ctx: RunContext[ShopDeps], query: str) -> list[dict[str, Any]]:
@@ -109,9 +145,13 @@ if REMOTE_MODEL_ENABLED:
                 return "The shopper is a guest, and no product page context is available."
             return "\n".join(details)
 
-    except Exception:
+    except Exception as error:
         # The keyless local assistant remains available if optional model setup is incomplete.
         ASSISTANT = None
+        logger.warning(
+            "PydanticAI setup failed; using the local assistant (%s).",
+            type(error).__name__,
+        )
 
 
 def _normalize(value: str) -> str:
@@ -145,7 +185,7 @@ def _find_product(message: str, product_id: str | None) -> ProductCard | None:
     text = _normalize(message)
     category_question = _is_category_question(message)
     pronoun_context = any(word in text.split() for word in ("this", "it", "that", "one"))
-    if product_id and not category_question and (pronoun_context or len(text.split()) <= 4):
+    if product_id and (pronoun_context or (not category_question and len(text.split()) <= 4)):
         product = get_product(product_id)
         if product:
             record_audit("get_product_info", {"product_id": product_id}, "Current product context loaded", "tool_complete")
@@ -299,6 +339,11 @@ async def answer_message(
             "agent_completed",
         )
         return structured, products, "pydantic-ai"
-    except Exception:
+    except Exception as error:
+        logger.warning(
+            "PydanticAI request failed (%s, HTTP %s); using the local assistant.",
+            type(error).__name__,
+            getattr(error, "status_code", "unknown"),
+        )
         record_audit("assistant_reply", {"mode": "fallback"}, "Remote model unavailable; used local catalogue logic", "model_error_fallback")
         return _local_reply(message, deps)
