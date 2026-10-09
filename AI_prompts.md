@@ -1,6 +1,6 @@
 # AI Prompts
 
-> Assignment overview prompt (AI-drafted from the course scenario): “Act as my project assistant for MGT 409 Homework 4. Help me build Campus Customs, a custom-apparel store with a React, Vite, and TypeScript front end and a Python FastAPI backend using a PydanticAI agent. Shoppers should be able to browse products, create accounts, chat, see matching product cards, and get accurate prices and size-level stock from the supplied local SQLite database. Use the supplied catalogue image paths and research yalebulldogblue.com for the site's style and information for the agent prompt. Work on one problem at a time, using the problem description I provide in my own words. Explain each step in clear English suitable for an international student, and help me review each result. When the project is ready, help me publish the code to a public GitHub repository and give me its URL so I can submit it on Canvas.” This is an AI-drafted project overview, not a verbatim prompt written by the student.
+> Assignment overview prompt (AI-drafted from the course scenario): “Act as my project assistant for MGT 409 Homework 4. Help me build Campus Customs, a custom-apparel store with a React, Vite, and TypeScript front end and a Python FastAPI backend using a PydanticAI agent. Shoppers should be able to browse products, create accounts, chat, see matching product cards, and get accurate prices and size-level stock from the supplied local SQLite database. Use the supplied catalogue image paths and research yalebulldogblue.com for the site's style and information for the agent prompt. Work on one problem at a time, using the problem description I provide in my own words. Explain each step in clear English suitable for an international student, and help me review each result. Do not use my Portkey API key or commit the course database or product images. When the project is ready, help me publish the code to a public GitHub repository and give me its URL so I can submit it on Canvas.” This is an AI-drafted project overview, not a verbatim prompt written by the student.
 
 ## Problem 1 — Vibe coder prompts
 
@@ -91,7 +91,7 @@ Please check the running site and create `output/app_check.html` with a heading,
 Please use screenshots from the working local app and make each caption say exactly what the image demonstrates. This evidence detail was missing from my first prompt.
 
 ### Outcome
-The local behaviors were checked, but the browser workflow did not allow image files to be saved into the project. `output/app_check.html` records the checks and marks the missing screenshot evidence clearly.
+The local behaviors were checked, and all three screenshots are saved under `output/app_check_images/` and linked from `output/app_check.html`: the inventory answer, chat-generated product cards, and usability filters and sorting.
 
 ## Problem 12 — Audit trail, safety, and harness
 
